@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+  <div class="container">
+    <a class="navbar-brand fw-semibold" href="{% url 'onlinecourse:index' %}">Online Course</a>
+    <div class="ms-auto d-flex align-items-center gap-2">
+      {% if user.is_authenticated %}
+        <span class="text-body-secondary small">Signed in as {{ user.first_name|default:user.username }}</span>
+        {% if user.is_staff %}
+          <a class="btn btn-outline-secondary btn-sm" href="{% url 'admin:index' %}">Admin site</a>
+        {% endif %}
+        <a class="btn btn-outline-dark btn-sm" href="{% url 'onlinecourse:logout' %}">Log out</a>
+      {% else %}
+        <a class="btn btn-outline-dark btn-sm" href="{% url 'onlinecourse:login' %}">Log in</a>
+        <a class="btn btn-dark btn-sm" href="{% url 'onlinecourse:registration' %}">Register</a>
+      {% endif %}
+    </div>
+  </div>
+</nav>
